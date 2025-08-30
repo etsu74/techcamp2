@@ -1,0 +1,16 @@
+id,name,start_date,start_time,end_date,end_time,organization_level,organization_type,decision_authority,report_to,attendees,location,agenda,parent_task,timeline_color,priority,frequency
+GM1,年次総会,2025-06-15,10:00,2025-06-15,12:00,1,general_meeting,final,,全組合員,集会所,年度決算・大規模修繕承認,T1,#8B0000,critical,annual
+GM2,臨時総会,2025-09-10,14:00,2025-09-10,16:00,1,general_meeting,final,,全組合員,集会所,修繕工事予算追加承認,T7,#8B0000,critical,adhoc
+BM1,理事会定例会1月,2025-01-20,19:00,2025-01-20,21:00,2,board_meeting,executive,GM1,理事5名,管理室,月次運営報告・修繕委員会設置,T2,#FF8C00,high,monthly
+BM2,理事会定例会2月,2025-02-20,19:00,2025-02-20,21:00,2,board_meeting,executive,GM1,理事5名,管理室,修繕委員会進捗確認,T3,#FF8C00,high,monthly
+BM3,理事会定例会3月,2025-03-20,19:00,2025-03-20,21:00,2,board_meeting,executive,GM1,理事5名,管理室,基本設計承認,T4,#FF8C00,high,monthly
+BM4,理事会定例会4月,2025-04-20,19:00,2025-04-20,21:00,2,board_meeting,executive,GM1,理事5名,管理室,実施設計進捗確認,T5,#FF8C00,high,monthly
+BM5,理事会臨時会,2025-08-15,19:00,2025-08-15,20:30,2,board_meeting,executive,GM1,理事5名,管理室,施工者選定結果報告,T13,#FF8C00,high,adhoc
+RC1,修繕委員会1月,2025-01-25,10:00,2025-01-25,12:00,3,repair_committee,advisory,BM1,委員3名・設計者,会議室A,基本設計検討,T4,#32CD32,high,monthly
+RC2,修繕委員会2月,2025-02-05,10:00,2025-02-05,12:00,3,repair_committee,advisory,BM2,委員3名・設計者,会議室A,基本設計詳細協議,T4,#32CD32,high,monthly
+RC3,修繕委員会3月,2025-03-05,10:00,2025-03-05,12:00,3,repair_committee,advisory,BM3,委員3名・設計者,会議室A,実施設計準備,T7,#32CD32,high,monthly
+RC4,修繕委員会4月,2025-04-10,10:00,2025-04-10,12:00,3,repair_committee,advisory,BM4,委員3名・設計者,会議室A,実施設計レビュー,T7,#32CD32,high,monthly
+RC5,修繕委員会5月,2025-05-08,10:00,2025-05-08,12:00,3,repair_committee,advisory,BM4,委員3名,会議室A,施工者選定準備,T12,#32CD32,medium,monthly
+RC6,修繕委員会6月,2025-06-12,10:00,2025-06-12,12:00,3,repair_committee,advisory,BM5,委員3名・施工者候補,会議室A,施工者選定面談,T13,#32CD32,high,monthly
+RC7,修繕委員会臨時1,2025-02-15,14:00,2025-02-15,16:00,3,repair_committee,advisory,BM2,委員3名・設計者・施工者,現場,現地確認会,T4,#32CD32,high,adhoc
+RC8,修繕委員会臨時2,2025-05-20,14:00,2025-05-20,16:00,3,repair_committee,advisory,BM4,委員3名・設計者,現場,工事詳細打合せ,T7,#32CD32,high,adhoc

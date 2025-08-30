@@ -1,0 +1,11 @@
+id,name,start,end,progress,dependencies,assignee,event_type,organization_level,organization_type,decision_authority,report_to,attendees,location,agenda,timeline_color,priority,frequency,memo
+T1,補助金申請,2026-04-15,2026-06-30,0,,担当2,construction,,,,,,,,,,,申請手続き詳細
+T2,コンセプト,2024-11-15,2024-12-31,100,,担当3,construction,,,,,,,,,,,基本方針策定
+T5,基本設計,2025-07-01,2025-09-30,10,,担当5,construction,,,,,,,,,,,
+T6,設計者予算算出,2025-10-01,2025-11-15,0,,担当1,construction,,,,,,,,,,,
+T7,実施設計,2026-01-01,2026-04-30,0,T5,担当2,construction,,,,,,,,,,,
+T8,設計者予算算出2,2026-05-01,2026-06-15,0,,担当3,construction,,,,,,,,,,,
+GM1,年次総会,2025-06-15,2025-06-15,100,,理事長,meeting,1,general_meeting,final,,全組合員,集会所,年度決算・大規模修繕承認,#8B0000,critical,annual,重要決議事項
+BM2,理事会定例会2月,2025-02-20,2025-02-20,100,,理事会,meeting,2,board_meeting,executive,GM1,理事5名,管理室,修繕委員会進捗確認,#FF8C00,high,monthly,
+BM3,理事会定例会3月,2025-03-20,2025-03-20,100,,理事会,meeting,2,board_meeting,executive,GM1,理事5名,管理室,基本設計承認,#FF8C00,high,monthly,
+RC1,修繕委員会1月,2025-01-25,2025-01-25,100,,修繕委員会,meeting,3,repair_committee,advisory,BM1,委員3名・設計者,会議室A,基本設計検討,#32CD32,high,monthly,設計方針決定
