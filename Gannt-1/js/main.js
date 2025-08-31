@@ -908,51 +908,10 @@ function switchViewMode(mode) {
     console.log('表示モード変更:', mode);
 }
 
-/**
- * ドラッグオーバー処理
- */
-function handleDragOver(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const dropZone = document.getElementById('drop-zone');
-    dropZone.classList.add('dragover');
-}
+// ローカルファイルアクセス機能は公開版では削除
 
-/**
- * ドラッグリーブ処理
- */
-function handleDragLeave(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const dropZone = document.getElementById('drop-zone');
-    dropZone.classList.remove('dragover');
-}
 
-/**
- * ファイルドロップ処理
- */
-function handleFileDrop(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    
-    const dropZone = document.getElementById('drop-zone');
-    dropZone.classList.remove('dragover');
-    
-    const files = event.dataTransfer.files;
-    if (files.length > 0) {
-        processFile(files[0]);
-    }
-}
 
-/**
- * ファイルインポート処理
- */
-function handleFileImport(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    
-    processFile(file);
-}
 
 /**
  * 進捗表示制御
@@ -979,121 +938,9 @@ function updateProgress(percent, message) {
     }
 }
 
-/**
- * ファイル処理
- */
-async function processFile(file) {
-    // ファイル形式チェック
-    const allowedTypes = ['.xlsx', '.xls', '.csv'];
-    const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
-    
-    if (!allowedTypes.includes(fileExtension)) {
-        updateStatus('エラー: Excel (.xlsx) または CSV ファイルを選択してください');
-        return;
-    }
-    
-    try {
-        showProgress();
-        updateProgress(0, 'ファイル処理開始...');
-        console.log('ファイル処理開始:', file.name);
-        
-        // DataProcessorを使用してファイルを読み込み（進捗コールバック付き）
-        const rawData = await DataProcessor.loadFile(file, updateProgress);
-        console.log('ファイル読み込み完了:', rawData);
-        
-        // データ検証（強化版）
-        const validation = DataProcessor.validateData(rawData);
-        
-        // 警告がある場合は表示
-        if (validation.warnings && validation.warnings.length > 0) {
-            console.log('データ検証警告:', validation.warnings);
-        }
-        
-        // 自動修正がある場合は表示
-        if (validation.fixes && validation.fixes.length > 0) {
-            console.log('データ自動修正:', validation.fixes);
-        }
-        
-        if (!validation.isValid) {
-            let errorMsg = 'データ検証エラー:\n' + validation.errors.join('\n');
-            
-            if (validation.warnings && validation.warnings.length > 0) {
-                errorMsg += '\n\n警告:\n' + validation.warnings.join('\n');
-            }
-            
-            updateStatus('データ検証失敗');
-            alert(errorMsg);
-            return;
-        }
-        
-        // 検証成功時の情報表示
-        if (validation.warnings && validation.warnings.length > 0) {
-            console.log(`データ検証完了: ${validation.validRowCount}件の有効データ`);
-        }
-        
-        // Frappe Gantt形式に変換
-        const ganttData = DataProcessor.convertToGanttFormat(rawData);
-        console.log('変換完了:', ganttData);
-        
-        if (ganttData.length === 0) {
-            updateStatus('エラー: 有効なデータが見つかりませんでした');
-            return;
-        }
-        
-        // プロジェクトデータを更新
-        projectData = ganttData;
-        
-        // UI更新
-        updateEventList();
-        renderGanttChart();
-        updateDataCount();
-        
-        updateStatus(`ファイル読み込み完了: ${ganttData.length}件のデータ`);
-        console.log('ファイル処理完了');
-        
-        // 成功時は2秒後に進捗バーを非表示
-        setTimeout(() => {
-            hideProgress();
-        }, 2000);
-        
-    } catch (error) {
-        console.error('ファイル処理エラー:', error);
-        updateStatus('エラー: ' + error.message);
-        hideProgress(); // エラー時は即座に非表示
-        
-        // ErrorHandlerを使用してユーザーフレンドリーなエラー表示
-        ErrorHandler.logError(error, 'ファイル処理');
-        ErrorHandler.showErrorDialog(error);
-    }
-}
+// ファイル処理機能は公開版では削除（デモデータのみ使用）
 
-/**
- * ファイルエクスポート処理
- */
-function handleFileExport() {
-    if (projectData.length === 0) {
-        updateStatus('エラー: 出力するデータがありません');
-        return;
-    }
-    
-    try {
-        updateStatus('ファイル出力中...');
-        console.log('ファイル出力開始');
-        
-        DataProcessor.exportToExcel(projectData);
-        
-        updateStatus('ファイル出力完了');
-        console.log('ファイル出力完了');
-        
-    } catch (error) {
-        console.error('ファイル出力エラー:', error);
-        updateStatus('エラー: ファイル出力に失敗しました');
-        
-        // ErrorHandlerを使用してユーザーフレンドリーなエラー表示
-        ErrorHandler.logError(error, 'ファイル出力');
-        ErrorHandler.showErrorDialog(error);
-    }
-}
+// ファイルエクスポート機能は公開版では削除
 
 /**
  * ステータス表示更新
