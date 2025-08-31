@@ -173,9 +173,8 @@ function updateEventList() {
     let processedMeetingEvents = meetingEvents;
     if (meetingEvents.length > 0 && meetingEvents.some(item => item.type === 'meeting')) {
         console.log('統合フォーマット検出: 個別会議データを集約処理に送信');
-        // [Phase 2] 会議統合機能を有効化して真の競合原因を特定
+        // 会議統合機能：組織レベル別に集約表示
         processedMeetingEvents = GanttManager.aggregateMeetingsByType(meetingEvents);
-        // processedMeetingEvents = meetingEvents; // 個別行表示に変更
         console.log(`会議データ集約結果: ${meetingEvents.length}件 → ${processedMeetingEvents.length}件`);
         
         // グローバル変数として設定（依存関係検証で使用）
@@ -494,9 +493,8 @@ function renderGanttChart() {
         let processedMeetingEvents = meetingEvents;
         if (meetingEvents.length > 0 && meetingEvents.some(item => item.type === 'meeting')) {
             console.log('統合フォーマット検出: 個別会議データを集約処理に送信');
-            // [Phase 2] 会議統合機能を有効化して真の競合原因を特定
+            // 会議統合機能：組織レベル別に集約表示
             processedMeetingEvents = GanttManager.aggregateMeetingsByType(meetingEvents);
-            // processedMeetingEvents = meetingEvents; // 個別行表示に変更
             
             // グローバル変数として設定（依存関係検証で使用）
             window.processedMeetingEvents = processedMeetingEvents;
@@ -625,9 +623,8 @@ function renderGanttChart() {
                     
                     let aggregatedTasks = [];
                     if (meetingEvents.length > 0 && meetingEvents.some(item => item.type === 'meeting')) {
-                        // [Phase 2] 会議統合機能を有効化して真の競合原因を特定
+                        // 会議統合機能：組織レベル別に集約表示
                         aggregatedTasks = window.GanttManager.aggregateMeetingsByType(meetingEvents);
-                        // aggregatedTasks = meetingEvents; // 個別行表示に変更
                     } else if (meetingEvents.length > 0) {
                         aggregatedTasks = meetingEvents;
                     }
