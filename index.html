@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マンション修繕計画ガントチャート</title>
+    <link rel="icon" href="data:," />
+    
+    <!-- Frappe Gantt CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frappe-gantt@0.6.1/dist/frappe-gantt.css">
+    
+    <!-- カスタムCSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/gantt.css">
+    <link rel="stylesheet" href="css/footer-fix.css">
+</head>
+<body>
+    <!-- ヘッダー部 -->
+    <header class="app-header">
+        <div class="header-container">
+            <h1 class="app-title">マンション修繕計画ガントチャート</h1>
+            <div class="header-controls">
+                <!-- 表示切替ボタン -->
+                <div class="view-mode-buttons">
+                    <button id="btn-day" class="view-btn">日</button>
+                    <button id="btn-week" class="view-btn">週</button>
+                    <button id="btn-month" class="view-btn active">月</button>
+                    <button id="btn-year" class="view-btn">年</button>
+                </div>
+                
+                <!-- 編集ボタン（MVP段階ではモック） -->
+                <div class="edit-buttons">
+                    <button id="btn-add-event" class="edit-btn" disabled>イベント追加</button>
+                    <button id="btn-edit-meeting" class="edit-btn" disabled>会議設定</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- メイン部 -->
+    <main class="app-main">
+        <div class="main-container">
+            <!-- 左カラム: イベント名（固定表示） -->
+            <div class="left-panel">
+                <div class="panel-header">
+                    <h3>イベント名</h3>
+                </div>
+                <div id="event-list" class="event-list">
+                    <!-- JavaScriptで動的生成 -->
+                </div>
+            </div>
+
+            <!-- 右カラム: ガントチャート表示領域 -->
+            <div class="right-panel">
+                <div class="gantt-container">
+                    <div id="gantt"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター部 -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <!-- 左端：データ入出力ボタン（大学提出版: ローカルファイルアクセス削除） -->
+            <div class="footer-left">
+                <button id="btn-demo-reload" class="io-btn">デモデータ再読み込み</button>
+                <span class="demo-info">※大学提出版: 62件のリアルデータを表示中</span>
+            </div>
+            
+            <!-- 中央：操作説明（大学提出版） -->
+            <div class="footer-center">
+                <div class="instructions">
+                    <span>• <strong>実用データ</strong>：マンション修繕工事62件（工事20件・会議42件）を表示</span><br>
+                    <span>• <strong>チャート機能</strong>：ドラッグで日程変更、クリックでメモ編集、会議は◆マークで表示</span><br>
+                    <span>• <strong>表示切替</strong>：日・週・月・年表示対応、依存関係矢印表示</span><br>
+                    <span>• <strong>スクロール同期</strong>：Shift+スクロールで左右パネル同期</span>
+                </div>
+            </div>
+            
+            <!-- 右端：ステータス表示（２行） -->
+            <div class="footer-right">
+                <div class="status-info">
+                    <div class="status-line"><span id="status-text">準備完了</span></div>
+                    <div class="status-line"><span id="data-count">データ件数: 0</span></div>
+                    <div id="progress-container" class="progress-container" style="display: none;">
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                        <span id="progress-text" class="progress-text">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SheetJS JavaScript -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+    
+    <!-- Frappe Gantt JavaScript (v0.6.1 - 安定版) -->
+    <script src="https://cdn.jsdelivr.net/npm/frappe-gantt@0.6.1/dist/frappe-gantt.min.js"></script>
+    
+    <!-- カスタムJavaScript -->
+    <script src="js/error-handler.js"></script>
+    <script src="js/data-processor.js"></script>
+    <script src="js/gantt-manager.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
